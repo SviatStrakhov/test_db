@@ -1,0 +1,77 @@
+
+{% extends "students/base.html" %}
+{% load static from staticfiles %}
+{% block meta_title %}Групи{% endblock meta_title %}
+{% block title %}Групи{% endblock title %}
+{% block content %}
+
+					<!-- Add Student Button -->
+					<div class="col-xs-12">
+						<a class="btn btn-primary col-xs-2" href="{% url "groups_add" %}">Додати Групу</a>
+					</div>
+
+					<!--Start Student List-->
+					<table class="table table-hover table-striped">
+						{% with order_by=request.GET.order_by reverse=request.GET.reverse %}
+						<thead>
+							<tr>
+								<th>№</th>
+								<th><a href="{% url "home" %}?order_by=title
+									{% if request.GET.order_by == 'title' and request.GET.reverse != '1' %}&amp;reverse=1{% endif %}">
+									Назва
+									{% if order_by == 'title' and reverse != '1' %}&uarr;
+									{% elif order_by == 'title' and reverse == '1' %}&darr;
+									{% endif %}
+									</a>
+								</th>
+								<th><a href="{% url "home" %}?order_by=amount
+									{% if request.GET.order_by == 'amount' and request.GET.reverse != '1' %}&amp;reverse=1{% endif %}">
+									Кількість студенів
+									{% if order_by == 'amount' and reverse != '1' %}&uarr;
+									{% elif order_by == 'amount' and reverse == '1' %}&darr;
+									{% endif %}
+									</a>
+								</th>
+								<th><a href="{% url "home" %}?order_by=leader
+									{% if request.GET.order_by == 'leader' and request.GET.reverse != '1' %}&amp;reverse=1{% endif %}">
+									Староста
+									{% if order_by == 'leader' and reverse != '1' %}&uarr;
+									{% elif order_by == 'leader' and reverse == '1' %}&darr;
+									{% endif %}
+									</a>
+								</th>
+								<th>Дії</th>
+							</tr>
+						</thead>
+						{% endwith %}
+						<tbody>
+							{% for group in groups %}
+							<tr>
+								<td>{{ forloop.counter }}</td>
+								<td><a titel="Редагувати" href="#">{{ group.title }}</a></td>
+								<td><a titel="Редагувати" href="#">31</a></td>
+								<td><a title="Редагувати" href="#">{{ group.leader }}</a></td>
+								<td>
+									<div class="dropdown">
+										<button class="btn btn-default dropdown-toggle" 	type="button" data-toggle="dropdown">Дія
+											<span class="caret"></span>
+										</button>
+										<ul class="dropdown-menu" role="menu">
+											</li>
+											<li role="presentation">
+												<a role="menuitem" tabindex="-1" href="#">Редагувати</a>
+											</li>
+											<li role="presentation">
+												<a role="menuitem" tabindex="-1" href="#">Видалити</a>
+											</li>
+										</ul>
+									</div>
+								</td>
+							</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+					<!--paginations-->
+					{% include "includes/pagination.html" %}
+					<!--End Student Listing-->
+{% endblock content %}

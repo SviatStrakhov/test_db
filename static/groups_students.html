@@ -1,0 +1,163 @@
+<!DOCTYPE <!DOCTYPE html>
+<html lang="uk">
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Сервіс обліку студентів</title>
+		<meta name="description" value="Система Обліку Студентів Нвчального Закладу" />
+
+		<!-- Include Styles -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+		<link rel="stylesheet" href="./css/main.css">
+
+		<!--<style type="text/css"> .col-xs-12, .col-xs-4, .col-xs-8 {border: 1px solid red;}</style>-->
+	</head>
+	<body>
+		<!--Start container-->
+		<div class="container">
+			<div class="row" id="header">
+				<div class="col-xs-8">
+					<h1>Сервіс Обліку Студентів</h1>
+				</div>
+				<div class="col-xs-4" id="group-selector">
+					<strong>Група:</strong>
+					<select>
+						<option value="">Усі студенти</option>
+						<option value="">ОКТ - 51, Страхов Святослав (№505)</option>
+						<option value="">ОКТ - 51, Страхов Святослав (№505)</option>
+					</select>
+				</div>
+			</div>
+			<!--Start Sub-holder-->
+			<div class="row" id="sub-header">
+				<div class="col-xs-12">
+					<ul class="nav nav-tabs" role="tablist">
+						<li role="presentation"><a href="#">Студенти</a></li>
+						<li role="presentation"><a href="#">Відвідування</a></li>
+						<li role="presentation" class="active"><a href="#">Группа</a></li>
+					</ul>
+				</div>
+			</div>
+			<!--End Sub-holder-->
+
+			<!--Start Main-->
+			<div class="row" id="content-columns">
+				<div class="col-xs-12" id="content-column">
+					<div class="col-xs-6">
+						<h2 class="col-xs-3">Групи</h2>
+
+						<!-- Add Student Button -->
+						<a class="btn btn-primary col-xs-3" href="#">Додати Групу</a>
+					</div>
+
+					<!--Start Student List-->
+					<table class="table table-hover table-striped">
+						<thead>
+							<tr>
+								<th>№</th>
+								<th>Назва</th>
+								<th>Староста</th>
+								<th>Дії</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td><a titel="Редагувати" href="#">ОКТ-51</a></td>
+								<td><a titel="Редагувати" href="#">Вася Пупкін</a></td>
+								<td>
+									<div class="dropdown">
+										<button class="btn btn-default dropdown-toggle" 	type="button" data-toggle="dropdown">Дія
+											<span class="caret"></span>
+										</button>
+										<ul class="dropdown-menu" role="menu">
+											<li role="presentation">
+												<a role="menuitem" tabindex="-1" href="#">Відвідування</a>
+											</li>
+											<li role="presentation">
+												<a role="menuitem" tabindex="-1" href="#">Редагувати</a>
+											</li>
+											<li role="presentation">
+												<a role="menuitem" tabindex="-1" href="#">Видалити</a>
+											</li>
+										</ul>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td><a titel="Редагувати" href="#">ОКТ-41</a></td>
+								<td><a titel="Редагувати" href="#">Семенюк Жека</a></td>
+								<td>
+									<div class="dropdown">
+										<button class="btn btn-default dropdown-toggle" 	type="button" data-toggle="dropdown">Дія
+											<span class="caret"></span>
+										</button>
+										<ul class="dropdown-menu" role="menu">
+											<li role="presentation">
+												<a role="menuitem" tabindex="-1" href="#">Відвідування</a>
+											</li>
+											<li role="presentation">
+												<a role="menuitem" tabindex="-1" href="#">Редагувати</a>
+											</li>
+											<li role="presentation">
+												<a role="menuitem" tabindex="-1" href="#">Видалити</a>
+											</li>
+										</ul>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td><a titel="Редагувати" href="#">ОКТ-31</a></td>
+								<td><a titel="Редагувати" href="#">Гармошкіна Варя</a></td>
+								<td>
+									<div class="dropdown">
+										<button class="btn btn-default dropdown-toggle" 	type="button" data-toggle="dropdown">Дія
+											<span class="caret"></span>
+										</button>
+										<ul class="dropdown-menu" role="menu">
+											<li role="presentation">
+												<a role="menuitem" tabindex="-1" href="#">Відвідування</a>
+											</li>
+											<li role="presentation">
+												<a role="menuitem" tabindex="-1" href="#">Редагувати</a>
+											</li>
+											<li role="presentation">
+												<a role="menuitem" tabindex="-1" href="#">Видалити</a>
+											</li>
+										</ul>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<nav>
+						<ul class="pagination">
+							<li><a href="#">&laquo;</a></li>
+							<li><a href="#">1</a></li>
+							<li class="active"><a href="#">2</a></li>
+							<li><a href="#">&raquo;</a></li>
+						</ul>
+					</nav>
+					<!--End Student Listing-->
+
+				</div>
+			</div>
+			<!--End Main-->
+
+			<!--Start Footer-->
+			<div class="row" id="footer">
+				<div class="col-xs-12">
+					&copy; 2014 Сервіс Обліку Студентів 
+				</div>
+			</div>
+			<!--End Footer-->
+		</div>
+
+		<!--Javascript Section-->
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.js"></script>
+		<script src="https://cdn.jsdelivr.net/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+
+	</body>
+</html>

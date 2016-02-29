@@ -1,0 +1,54 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html lang="uk">
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Сервіс обліку студентів{% block meta_title %}{% endblock meta_title %}</title>
+		<meta name="description" value="Система Обліку Студентів Нвчального Закладу" />
+
+		<!-- Include Styles -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+		<link rel="stylesheet" href="{{ PORTAL_URL }}{% static "css/main.css" %}">
+
+		{% block extra_css %}{% endblock extra_css %}
+
+	</head>
+	<body>
+		<!--Start container-->
+		<div class="container">
+			<div class="row" id="header">
+				<div class="col-xs-8">
+					<h1>Сервіс Обліку Студентів</h1>
+				</div>
+			</div>
+			<!--Start Sub-holder-->
+			<div class="row" id="sub-header">
+				<div class="col-xs-12">
+					<ul class="nav nav-tabs" role="tablist">
+						<li role="presentation" {% if request.path == '/'%}class="active"{% endif %}><a href="{% url "home" %}">Группи</a></li>
+						<li role="presentation" {% if '/students' in request.path%}class="active"{% endif %}><a href="{% url "students" %}">Студенти</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-xs-12">
+				<h2 class="col-xs-6">{% block title %}{% endblock title %}</h2>
+			</div>
+			<!--End Sub-holder-->
+			{% block content%} {% endblock content %}			
+		
+			<!--Start Footer-->
+			<div class="row" id="footer">
+				<div class="col-xs-12">
+					&copy; 2016 Сервіс Обліку Студентів 
+				</div>
+			</div>
+			<!--End Footer-->
+		</div>
+
+		<!--Javascript Section-->
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.js"></script>
+		<script src="https://cdn.jsdelivr.net/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+		{% block extra_js %}{% endblock extra_js %}
+
+	</body>
+</html>
