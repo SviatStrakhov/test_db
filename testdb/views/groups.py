@@ -3,6 +3,8 @@ from django.template import RequestContext, loader
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.views.generic import UpdateView, DeleteView
+from django.forms import ModelForm
 from django.core.urlresolvers import reverse
 from datetime import datetime
 from . .models import Student, Group
@@ -34,20 +36,38 @@ def groups_add(request):
 				group = Group(**data)
 				group.save()
 
-				return HttpResponseRedirect(u'%s?status_message=Студента успішно додано!' % reverse('home'))
+				return HttpResponseRedirect(u'%s?status_message=Групу успішно додано!' % reverse('home'))
 			else:
 				return render(request, 'students/groups_add.html', {'students': Student.objects.all().order_by('last_name'), 'errors': errors})
 		
 		elif request.POST.get('cancel_button') is not None:
-			return HttpResponseRedirect(u'%s?status_message=Додавання студента скасовано!' % reverse('home'))
+			return HttpResponseRedirect(u'%s?status_message=Додавання групи скасовано!' % reverse('home'))
 	else:
 		return render(request, 'students/groups_add.html', {'students': Student.objects.all().order_by('last_name')})
 
 
-def groups_edit(request, gid):
-	return HttpResponse('<h1>Edit Group %s</h1>' % gid)
-def groups_delete(request, gid):
-	return HttpResponse('<h1>Delete Group %s</h1>' % gid)
+class GroupUpdateView(UpdateView):
+	model = Group
+	fields = '__all__'
+	template_name = 'students/groups_edit.html'
+
+	def get_success_url(self):
+		return u'%s?status_message=Групу успішно збережено!' % reverse('home')
+
+	def post(self, request, *args, **kwargs):
+		if request.POST.get('cancel_button'):
+			return HttpResponseRedirect(u'%s?status_message=Редагування групи відмінено!' % reverse('home'))
+		else:
+			return super(GroupUpdateView, self).post(request, *args, **kwargs)
+
+
+
+class GroupDeleteView(DeleteView):
+	model = Group
+	template_name = 'students/groups_confirm_delete.html'
+
+	def get_success_url(self):
+		return u'%s?status_message=Групу успішно видалено!' % reverse('home')
 
 def groups_list(request):
 	groups = Group.objects.all()

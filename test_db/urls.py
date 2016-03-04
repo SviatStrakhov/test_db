@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.conf.urls import url, patterns, include
 from django.contrib import admin
+from testdb.views.students import StudentUpdateView, StudentDeleteView
+from testdb.views.groups import GroupUpdateView, GroupDeleteView
 
 urlpatterns = [
 
@@ -23,15 +25,15 @@ urlpatterns = [
     # Groups urls
     url(r'^$', 'testdb.views.groups.groups_list', name='home'),
     url(r'^groups/add/$', 'testdb.views.groups.groups_add', name='groups_add'),
-    url(r'^groups/(?P<gid>\d+)/edit/$','testdb.views.groups.groups_edit', name='groups_edit'),
-    url(r'^groups/(?P<gid>\d+)/delete/$', 'testdb.views.groups.groups_delete', name='groups_delete'),
+    url(r'^groups/(?P<pk>\d+)/edit/$', GroupUpdateView.as_view(), name='groups_edit'),
+    url(r'^groups/(?P<pk>\d+)/delete/$', GroupDeleteView.as_view(), name='groups_delete'),
 
 
-    	# Students urls
+    # Students urls
     url(r'^students/$', 'testdb.views.students.students_list', name='students'),
     url(r'^students/add/$', 'testdb.views.students.students_add', name='students_add'),
-    url(r'^students/(?P<sid>\d+)/edit/$', 'testdb.views.students.students_edit', name='students_edit'),
-   	url(r'^students/(?P<sid>\d+)/delete/$', 'testdb.views.students.students_delete', name='students_delete'),
+    url(r'^students/(?P<pk>\d+)/edit/$', StudentUpdateView.as_view(), name='students_edit'),
+    url(r'^students/(?P<pk>\d+)/delete/$', StudentDeleteView.as_view(), name='students_delete')
 
 
 ]
