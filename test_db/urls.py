@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url, patterns, include
 from django.contrib import admin
+from .settings import MEDIA_ROOT, DEBUG
 from testdb.views.students import StudentUpdateView, StudentDeleteView
 from testdb.views.groups import GroupUpdateView, GroupDeleteView
 
@@ -38,7 +39,7 @@ urlpatterns = [
 
 ]
 
-from .settings import MEDIA_ROOT, DEBUG
+
 
 if DEBUG:
 	# serve files from media folder
