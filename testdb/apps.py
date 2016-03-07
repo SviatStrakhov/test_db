@@ -6,7 +6,7 @@ from django.apps import AppConfig
 
 class TestdbAppConfig(AppConfig):
     name = 'testdb'
-	verbose_name = u'База Студентів'
+    verbose_name = u'База Студентів'
 
-	def ready(self):
-		from testdb import signals
+    def ready(self):
+        from testdb import signals

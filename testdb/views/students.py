@@ -14,7 +14,7 @@ from crispy_forms.layout import Submit
 from crispy_forms.bootstrap import FormActions
 
 
-from . .models import Student, Group
+from ..models import Student, Group
 
 
 
