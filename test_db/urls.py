@@ -18,6 +18,8 @@ from django.contrib import admin
 from .settings import MEDIA_ROOT, DEBUG
 from testdb.views.students import StudentUpdateView, StudentDeleteView
 from testdb.views.groups import GroupUpdateView, GroupDeleteView
+from django.contrib.auth import views as auth_views
+from django.views.generic.base import RedirectView
 
 urlpatterns = [
 
@@ -34,7 +36,13 @@ urlpatterns = [
     url(r'^students/$', 'testdb.views.students.students_list', name='students'),
     url(r'^students/add/$', 'testdb.views.students.students_add', name='students_add'),
     url(r'^students/(?P<pk>\d+)/edit/$', StudentUpdateView.as_view(), name='students_edit'),
-    url(r'^students/(?P<pk>\d+)/delete/$', StudentDeleteView.as_view(), name='students_delete')
+    url(r'^students/(?P<pk>\d+)/delete/$', StudentDeleteView.as_view(), name='students_delete'),
+
+    # User Related urls
+    url(r'^users/logout/$', auth_views.logout, kwargs={'next_page':'home'}, name='auth_logout'),
+    url(r'^register/complete/$', RedirectView.as_view(pattern_name='home'),name='registration_complete'),
+    url(r'^users/', include('registration.backends.simple.urls', namespace='users')),
+
 
 
 ]
