@@ -1,4 +1,5 @@
 {% load static from staticfiles %}
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="uk">
 	<head>
@@ -35,8 +36,9 @@
 
 				<!-- User's toolbar for anonymous users -->
 				<div class="col-xs-4" id="user-toolbar">
-					<a href="{% url "users:auth_login" %}">Login</a> |
-					<a href="{% url "users:registration_register" %}">Register</a>
+					<a href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}">{% trans "via Facebook" %}</a> |
+					<a href="{% url "users:auth_login" %}">{% trans "Login" %}</a> |
+					<a href="{% url "users:registration_register" %}">{% trans "Register" %}</a>
 				</div>
 				{% endif %}
 			</div>

@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'registration',
+    'social.apps.django_app.default',
     'testdb',
     'stud_auth',
 ]
@@ -66,12 +67,18 @@ TEMPLATES = [
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
+                "social.apps.django_app.context_processors.backends",
+                "social.apps.django_app.context_processors.login_redirect",
+                #"studentsdb.context_processors.students_proc", #!!!!!!!
+                #"students.context_processors.groups_processor",  #!!!!!!
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
         },
     },
 ]
+
+
 
 WSGI_APPLICATION = 'test_db.wsgi.application'
 
@@ -136,6 +143,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR, '..', 'media')
 REGISTRATION_OPEN = True
 LOGIN_URL = 'users:auth_login'
 LOGOUT_URL = 'users:auth_logout'
+AUTHENTICATION_BACKENDS = (
+    'social.backends.facebook.FacebookOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
+SOCIAL_AUTH_FACEBOOK_KEY = '976470842442273'
+SOCIAL_AUTH_FACEBOOK_SECRET = 'c9ccffb319065081b6c6aec6e0609eeb'
+
+
 
 LOG_FILE = os.path.join(BASE_DIR, 'testdb.log')
 LOGGING = {
