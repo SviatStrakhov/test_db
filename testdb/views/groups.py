@@ -7,11 +7,14 @@ from django.views.generic import UpdateView, DeleteView
 from django.forms import ModelForm
 from django.core.urlresolvers import reverse
 from datetime import datetime
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
+
+
 from . .models import Student, Group
 
 
 # Views for Groups
-
 def groups_add(request):
 	if request.method == "POST":
 		if request.POST.get('add_button') is not None:
@@ -51,6 +54,7 @@ class GroupUpdateView(UpdateView):
 	fields = '__all__'
 	template_name = 'students/groups_edit.html'
 
+
 	def get_success_url(self):
 		return u'%s?status_message=Групу успішно збережено!' % reverse('home')
 
@@ -65,6 +69,7 @@ class GroupUpdateView(UpdateView):
 class GroupDeleteView(DeleteView):
 	model = Group
 	template_name = 'students/groups_confirm_delete.html'
+
 
 	def get_success_url(self):
 		return u'%s?status_message=Групу успішно видалено!' % reverse('home')

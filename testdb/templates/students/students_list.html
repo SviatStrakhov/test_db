@@ -5,10 +5,11 @@
 {% block content %}
 
 					<!-- Add Student Button -->
+					{% if user.is_authenticated %}
 					<div class="col-xs-12">
 						<a class="btn btn-primary col-xs-2" href="{% url 'students_add'%}">Додати Студента</a>
 					</div>
-
+					{% endif %}
 					<!--Start Student List-->
 					<table class="table table-hover table-striped">
 						{% with order_by=request.GET.order_by reverse=request.GET.reverse %}
@@ -40,7 +41,9 @@
 									{% endif %}
 									</a>
 								</th>
+								{% if user.is_authenticated %}
 								<th>Дії</th>
+								{% endif %}
 							</tr>
 						</thead>
 						{% endwith %}
@@ -56,6 +59,7 @@
 								<td><a titel="Редагувати" href="{% url "students_edit" student.id %}" class="student-edit-form-link ">{{ student.last_name}}</a></td>
 								<td><a titel="Редагувати" href="{% url "students_edit" student.id %}" class="student-edit-form-link ">{{ student.first_name}}</a></td>
 								<td>{{ student.ticket}}</td>
+								{% if user.is_authenticated %}
 								<td>
 									<div class="dropdown">
 										<button class="btn btn-default dropdown-toggle" 	type="button" data-toggle="dropdown">Дія
@@ -71,6 +75,7 @@
 										</ul>
 									</div>
 								</td>
+								{% endif %}
 							</tr>
 							{% endfor %}
 						</tbody>

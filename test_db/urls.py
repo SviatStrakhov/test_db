@@ -17,9 +17,10 @@ from django.conf.urls import url, patterns, include
 from django.contrib import admin
 from .settings import MEDIA_ROOT, DEBUG
 from testdb.views.students import StudentUpdateView, StudentDeleteView
-from testdb.views.groups import GroupUpdateView, GroupDeleteView
+from testdb.views.groups import GroupUpdateView, GroupDeleteView, groups_list, groups_add
 from django.contrib.auth import views as auth_views
 from django.views.generic.base import RedirectView
+from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
 
@@ -27,9 +28,9 @@ urlpatterns = [
 
     # Groups urls
     url(r'^$', 'testdb.views.groups.groups_list', name='home'),
-    url(r'^groups/add/$', 'testdb.views.groups.groups_add', name='groups_add'),
-    url(r'^groups/(?P<pk>\d+)/edit/$', GroupUpdateView.as_view(), name='groups_edit'),
-    url(r'^groups/(?P<pk>\d+)/delete/$', GroupDeleteView.as_view(), name='groups_delete'),
+    url(r'^groups/add/$', login_required(groups_add), name='groups_add'),
+    url(r'^groups/(?P<pk>\d+)/edit/$', login_required(GroupUpdateView.as_view()), name='groups_edit'),
+    url(r'^groups/(?P<pk>\d+)/delete/$', login_required(GroupDeleteView.as_view()), name='groups_delete'),
 
 
     # Students urls

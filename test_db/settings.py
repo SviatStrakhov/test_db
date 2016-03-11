@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-REGISTRATION_OPEN = True
+
 
 
 # Application definition
@@ -130,11 +130,14 @@ STATIC_URL = '/static/'
 PORTAL_URL = 'http://localhost:8000'
 
 MEDIA_URL = '/media/'
-
 MEDIA_ROOT = os.path.join(BASE_DIR, '..', 'media')
 
-LOG_FILE = os.path.join(BASE_DIR, 'testdb.log')
 
+REGISTRATION_OPEN = True
+LOGIN_URL = 'users:auth_login'
+LOGOUT_URL = 'users:auth_logout'
+
+LOG_FILE = os.path.join(BASE_DIR, 'testdb.log')
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': True,
