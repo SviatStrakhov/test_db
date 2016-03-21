@@ -1,5 +1,6 @@
 {% extends "students/base.html" %}
 {% load static from staticfiles %}
+{% load pagenav %}
 {% block meta_title %}Студенти{% endblock meta_title %}
 {% block title %}База студентів{% endblock title %}
 {% block content %}
@@ -81,6 +82,6 @@
 						</tbody>
 					</table>
 					<!--paginations-->
-					{% include "includes/pagination.html" %}
+					{% pagenav object_list=students is_paginated=is_paginated paginator=paginator %}
 					<!--End Student Listing-->
 {% endblock content %}					

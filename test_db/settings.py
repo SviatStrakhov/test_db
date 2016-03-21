@@ -43,9 +43,11 @@ INSTALLED_APPS = [
     'social.apps.django_app.default',
     'testdb',
     'stud_auth',
+    'page_stats',
 ]
 
 MIDDLEWARE_CLASSES = [
+    'page_stats.middleware.RequestTimeMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -69,8 +71,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 "social.apps.django_app.context_processors.backends",
                 "social.apps.django_app.context_processors.login_redirect",
-                #"studentsdb.context_processors.students_proc", #!!!!!!!
-                #"students.context_processors.groups_processor",  #!!!!!!
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
