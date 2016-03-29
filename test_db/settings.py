@@ -73,6 +73,7 @@ TEMPLATES = [
                 "social.apps.django_app.context_processors.login_redirect",
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'testdb.context_processors.students_proc',
             ],
         },
     },
@@ -147,8 +148,8 @@ AUTHENTICATION_BACKENDS = (
     'social.backends.facebook.FacebookOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
-SOCIAL_AUTH_FACEBOOK_KEY = '976470842442273'
-SOCIAL_AUTH_FACEBOOK_SECRET = 'c9ccffb319065081b6c6aec6e0609eeb'
+SOCIAL_AUTH_FACEBOOK_KEY = '1702709313338996'
+SOCIAL_AUTH_FACEBOOK_SECRET = '9a133119ee044ddea6e53e9d1f983920'
 
 
 

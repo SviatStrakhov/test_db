@@ -1,17 +1,10 @@
 {% extends "students/base.html" %}
 {% load static from staticfiles %}
 {% load pagenav %}
-{% block meta_title %}Студенти{% endblock meta_title %}
-{% block title %}База студентів{% endblock title %}
+{% block meta_title %}Список групи{% endblock meta_title %}
+{% block title %}Список групи{% endblock title %}
 {% block content %}
 
-					<!-- Add Student Button -->
-					{% if user.is_authenticated %}
-					<div class="col-xs-12">
-						<a class="btn btn-primary col-xs-2" href="{% url 'students_add'%}">Додати Студента</a>
-					</div>
-					{% endif %}
-					<!--Start Student List-->
 					<table class="table table-hover table-striped">
 						{% with order_by=request.GET.order_by reverse=request.GET.reverse %}
 						<thead>
@@ -49,7 +42,7 @@
 						</thead>
 						{% endwith %}
 						<tbody>
-							{% for student in students%}
+							{% for student in groups_list%}
 							<tr>
 								<td>{{ forloop.counter }}</td>
 								<td>{% if student.photo %}
@@ -81,7 +74,5 @@
 							{% endfor %}
 						</tbody>
 					</table>
-					<!--paginations-->
-					{% pagenav object_list=students is_paginated=is_paginated paginator=paginator %}
-					<!--End Student Listing-->
-{% endblock content %}					
+					
+{% endblock content %}	

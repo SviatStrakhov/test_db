@@ -11,6 +11,7 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 
 
+
 from . .models import Student, Group
 
 
@@ -74,8 +75,11 @@ class GroupDeleteView(DeleteView):
 	def get_success_url(self):
 		return u'%s?status_message=Групу успішно видалено!' % reverse('home')
 
+
+
 def groups_list(request):
 	groups = Group.objects.all()
+
 
 	# try to order students list
 	order_by = request.GET.get('order_by', '')
@@ -98,6 +102,22 @@ def groups_list(request):
 
 	return render(request, 'students/groups_list.html', {'groups': groups})
 
+
+def groups_students(request, pk):
+	groups_list = Student.objects.filter(student_group=pk)
+
+	order_by = request.GET.get('order_by', '')
+	if order_by in ('last_name', 'first_name', 'ticket'):                   
+		groups_list = groups_list.order_by(order_by)
+		if request.GET.get('reverse', '') == '1':
+			groups_list = groups_list.reverse()
+
+	return render(request, 'students/groups_students.html', {'groups_list': groups_list})
+
+#def quantity_students(request, pk):
+#	students = Student.objects.filter(student_group=pk).count()
+
+#	return render(request, 'students/groups_students.html', {'groups_list': groups_list})
 
 
 

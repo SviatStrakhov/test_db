@@ -53,8 +53,10 @@
 							{% for group in groups %}
 							<tr>
 								<td>{{ forloop.counter }}</td>
-								<td><a titel="Редагувати" href="{% url "groups_edit" group.id %}">{{ group.title }}</a></td>
-								<td><a titel="Редагувати" href="{% url "groups_edit" group.id %}">31</a></td>
+								<td><a titel="Редагувати" href="{% url "groups_students" group.id %}">{{ group.title }}</a></td>
+								<td><a titel="Редагувати" href="{% url "groups_edit" group.id %}">
+								{{ PORTAL_URL}}
+								</a></td>
 								<td><a title="Редагувати" href="{% url "groups_edit" group.id %}">{{ group.leader }}</a></td>
 								<td>
 								{% if user.is_authenticated %}

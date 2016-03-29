@@ -31,6 +31,7 @@ urlpatterns = [
     url(r'^groups/add/$', login_required(groups_add), name='groups_add'),
     url(r'^groups/(?P<pk>\d+)/edit/$', login_required(GroupUpdateView.as_view()), name='groups_edit'),
     url(r'^groups/(?P<pk>\d+)/delete/$', login_required(GroupDeleteView.as_view()), name='groups_delete'),
+   	url(r'^groups/(?P<pk>\d+)/students/$', 'testdb.views.groups.groups_students', name='groups_students'),
 
 
     # Students urls
