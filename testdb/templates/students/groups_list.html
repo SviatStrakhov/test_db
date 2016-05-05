@@ -1,6 +1,5 @@
 
 {% extends "students/base.html" %}
-{% load i18n %}
 {% load static from staticfiles %}
 {% load pagenav %}
 {% block meta_title %}Групи{% endblock meta_title %}
@@ -10,7 +9,7 @@
 					<!-- Add Student Button -->
 					{% if user.is_authenticated %}
 					<div class="col-xs-12">
-						<a class="btn btn-primary col-xs-2" href="{% url "groups_add" %}">Додати Групу</a>
+						<a class="btn btn-primary col-xs-2" href="{% url "groups_add" %}">Додати Групу </a>
 					</div>
 					{% endif %}
 					<!--Start Student List-->
@@ -50,12 +49,12 @@
 						</thead>
 						{% endwith %}
 						<tbody>
-							{% for group in groups %}
+							{% for group in object_list %}
 							<tr>
 								<td>{{ forloop.counter }}</td>
 								<td><a titel="Редагувати" href="{% url "groups_students" group.id %}">{{ group.title }}</a></td>
 								<td><a titel="Редагувати" href="{% url "groups_edit" group.id %}">
-								{{ PORTAL_URL}}
+								{{ student }}
 								</a></td>
 								<td><a title="Редагувати" href="{% url "groups_edit" group.id %}">{{ group.leader }}</a></td>
 								<td>
@@ -80,8 +79,20 @@
 							{% endfor %}
 						</tbody>
 					</table>
-					<!--paginations-->
+
+
+					<!--{% if paginator.num_pages > 1 %}
+						{% if page_obj.has_previous %}
+							 <a href="/page{{ page_obj.previous_page_number }}/">&larr;</a>
+						{% endif %}
+						<span class="current_page">{{ paginator.number }}</span>
+        				{% if page_obj.has_next %}
+							<a href="/page{{ page_obj.next_page_number }}">&rarr;</a>
+						{% endif %}
+					{% endif %}
+
+					<!--paginations
 					{% pagenav object_list=groups is_paginated=is_paginated paginator=paginator %}
-					<!--End Student Listing-->
+					End Student Listing-->
 {% endblock content %}
 

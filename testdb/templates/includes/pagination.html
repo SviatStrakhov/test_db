@@ -3,7 +3,7 @@
 <nav>
 	<ul class="pagination">
 		<li>
-			<a href="?page=1{%if order_by %}&amp;order_by={{ order_by }}{% endif %}{% if reverse %}&amp;reverse={{ reverse }}{% endif %}">&laquo;</a>
+			<a href="?page=1{% if order_by %}&amp;order_by={{ order_by }}{% endif %}{% if reverse %}&amp;reverse={{ reverse }}{% endif %}">&laquo;</a>
 		</li>
 
 		{% for p in object_list.paginator.page_range %}

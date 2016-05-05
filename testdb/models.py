@@ -72,13 +72,13 @@ class Group(models.Model):
 			
 
 	title = models.CharField(
-		max_length=256,
-		blank=False,
-		verbose_name=u"Назва")
+		max_length = 256,
+		blank = False,
+		verbose_name = u"Назва")
 
 	leader = models.OneToOneField('Student',
 		verbose_name=u"Староста",
-		blank=False,
+		blank=True,
 		null=True,
 		on_delete=models.SET_NULL)
 

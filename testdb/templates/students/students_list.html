@@ -49,7 +49,7 @@
 						</thead>
 						{% endwith %}
 						<tbody>
-							{% for student in students%}
+							{% for student in object_list %}
 							<tr>
 								<td>{{ forloop.counter }}</td>
 								<td>{% if student.photo %}

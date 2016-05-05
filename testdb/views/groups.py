@@ -3,12 +3,13 @@ from django.template import RequestContext, loader
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.views.generic import UpdateView, DeleteView
+from django.views.generic import UpdateView, DeleteView, ListView, DetailView
 from django.forms import ModelForm
 from django.core.urlresolvers import reverse
 from datetime import datetime
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
+
 
 
 
@@ -76,31 +77,15 @@ class GroupDeleteView(DeleteView):
 		return u'%s?status_message=Групу успішно видалено!' % reverse('home')
 
 
+class GroupsList(ListView):
+	model = Group
+	template_name = 'students/groups_list.html'
 
-def groups_list(request):
-	groups = Group.objects.all()
+	def get_context_data(self, **kwargs):
+		context = super(GroupsList, self).get_context_data(**kwargs)
+		context['student'] = 25
+		return context
 
-
-	# try to order students list
-	order_by = request.GET.get('order_by', '')
-	if order_by in ('title', 'leader'):
-		groups = groups.order_by(order_by)
-		if request.GET.get('reverse', '') == '1':
-			groups = groups.reverse()
-
-	# paginate groups
-	paginator = Paginator(groups, 3)
-	page = request.GET.get('page')
-	try:
-		groups = paginator.page(page)
-	except PageNotAnInteger:
-		# If page is not an integer, deliver first page
-		groups = paginator.page(1)
-	except EmptyPage:
-		# If page is out of range (e.g. 9999), deliver last page of results
-		groups = paginator.page(paginator.num_pages)
-
-	return render(request, 'students/groups_list.html', {'groups': groups})
 
 
 def groups_students(request, pk):
@@ -114,10 +99,30 @@ def groups_students(request, pk):
 
 	return render(request, 'students/groups_students.html', {'groups_list': groups_list})
 
-#def quantity_students(request, pk):
-#	students = Student.objects.filter(student_group=pk).count()
+#def groups_list(request):
+#	groups = Group.objects.all()
+#	students = 25
 
-#	return render(request, 'students/groups_students.html', {'groups_list': groups_list})
+	# try to order students list
+#	order_by = request.GET.get('order_by', '')
+#	if order_by in ('title', 'leader'):
+#		groups = groups.order_by(order_by)
+#		if request.GET.get('reverse', '') == '1':
+#			groups = groups.reverse()
+
+	# paginate groups
+#	paginator = Paginator(groups, 3)
+#	page = request.GET.get('page')
+#	try:
+#		groups = paginator.page(page)
+#	except PageNotAnInteger:
+#		# If page is not an integer, deliver first page
+#		groups = paginator.page(1)
+#	except EmptyPage:
+		# If page is out of range (e.g. 9999), deliver last page of results
+#		groups = paginator.page(paginator.num_pages)
+#
+#	return render(request, 'students/groups_list.html', {'groups': groups, 'student': students})
 
 
 

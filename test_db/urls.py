@@ -16,8 +16,8 @@ Including another URLconf
 from django.conf.urls import url, patterns, include
 from django.contrib import admin
 from .settings import MEDIA_ROOT, DEBUG
-from testdb.views.students import StudentUpdateView, StudentDeleteView
-from testdb.views.groups import GroupUpdateView, GroupDeleteView, groups_list, groups_add
+from testdb.views.students import StudentUpdateView, StudentDeleteView, StudentList
+from testdb.views.groups import GroupUpdateView, GroupDeleteView, GroupsList, groups_add
 from django.contrib.auth import views as auth_views
 from django.views.generic.base import RedirectView, TemplateView
 from django.contrib.auth.decorators import login_required
@@ -27,7 +27,8 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
     # Groups urls
-    url(r'^$', 'testdb.views.groups.groups_list', name='home'),
+    url(r'^$', GroupsList.as_view(), name='home'),
+    #url(r'^$', 'testdb.views.groups.groups_list', name='home'),
     url(r'^groups/add/$', login_required(groups_add), name='groups_add'),
     url(r'^groups/(?P<pk>\d+)/edit/$', login_required(GroupUpdateView.as_view()), name='groups_edit'),
     url(r'^groups/(?P<pk>\d+)/delete/$', login_required(GroupDeleteView.as_view()), name='groups_delete'),
@@ -35,8 +36,10 @@ urlpatterns = [
 
 
     # Students urls
-    url(r'^students/$', 'testdb.views.students.students_list', name='students'),
+    url(r'^students/$', StudentList.as_view(), name='students'),
+    #url(r'^students/$', 'testdb.views.students.students_list', name='students'),
     url(r'^students/add/$', 'testdb.views.students.students_add', name='students_add'),
+    #url(r'^students/add/$', StudentCreateView.as_view(), name='students_add'),
     url(r'^students/(?P<pk>\d+)/edit/$', StudentUpdateView.as_view(), name='students_edit'),
     url(r'^students/(?P<pk>\d+)/delete/$', StudentDeleteView.as_view(), name='students_delete'),
 
